@@ -65,6 +65,7 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:1.1.2"
     implementation "com.android.support:design:$supportLibVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibVersion"
+    implementation "com.android.support:customtabs:$supportLibVersion"
 
     // Jetpack
     implementation "android.arch.lifecycle:runtime:$archVersion"

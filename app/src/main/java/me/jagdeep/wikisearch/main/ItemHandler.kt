@@ -2,6 +2,6 @@ package me.jagdeep.wikisearch.main
 
 import me.jagdeep.domain.search.model.SearchResult
 
-interface SearchItemListener {
-    fun onSearchResultClicked(searchResult: SearchResult)
+interface ItemHandler {
+    fun invoke(searchResult: SearchResult)
 }

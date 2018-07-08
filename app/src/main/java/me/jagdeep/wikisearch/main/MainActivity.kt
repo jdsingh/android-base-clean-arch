@@ -31,6 +31,9 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
+    @Inject
+    lateinit var openWikipediaPageHandler: OpenWikipediaPageHandler
+
     private lateinit var viewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +46,15 @@ class MainActivity : DaggerAppCompatActivity() {
         setupListView()
         hideKeyboardOnScroll()
         observeState()
+        observeQueryText()
+    }
 
+    private fun observeQueryText() {
         query_input.onTextChanged {
             clear_query.isVisible = it.isNotEmpty()
+            if (it.isBlank()) {
+                listAdapter.submitList(emptyList())
+            }
             viewModel.search(it.toString())
         }
     }
@@ -54,7 +63,6 @@ class MainActivity : DaggerAppCompatActivity() {
         viewModel.searchResult().observe(this, Observer { state ->
             when (state) {
                 is SearchState.Error -> {
-                    // TODO: show nice error message
                     toast(state.message)
                 }
                 is SearchState.Success -> {
@@ -68,7 +76,6 @@ class MainActivity : DaggerAppCompatActivity() {
     private fun setupListView() {
         clear_query.setOnClickListener {
             query_input.setText("")
-            listAdapter.submitList(emptyList())
         }
 
         listAdapter.clickListener = searchItemListener
@@ -101,7 +108,7 @@ class MainActivity : DaggerAppCompatActivity() {
     private val searchItemListener = object : SearchItemListener {
 
         override fun onSearchResultClicked(searchResult: SearchResult) {
-            // TODO: open wikipedia page in chrome tab
+            openWikipediaPageHandler(searchResult)
         }
 
     }
