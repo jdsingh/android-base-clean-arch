@@ -2,6 +2,10 @@ buildscript {
     ext {
         kotlin_version = '1.2.51'
 
+        compileSdkVersion = 27
+        minSdkVersion = 23
+        targetSdkVersion = 27
+
         archVersion = '1.1.0'
         roomVersion = '1.0.0'
         supportLibVersion = '27.1.1'
