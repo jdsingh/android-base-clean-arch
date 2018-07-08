@@ -23,7 +23,7 @@ class SearchViewModel @Inject constructor(
             .filter { it.isNotBlank() }
             .distinctUntilChanged()
             .switchMap { query ->
-                searchUseCase.execute(SearchUseCase.Companion.Params(query))
+                searchUseCase.execute(SearchUseCase.Companion.Params(query)).toObservable()
             }
             .subscribe({ results ->
                 searchState.value = SearchState.Success(results)

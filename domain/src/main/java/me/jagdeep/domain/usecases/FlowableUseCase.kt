@@ -10,7 +10,7 @@ abstract class FlowableUseCase<T, in Params> constructor(
     private val postExecutionThread: PostExecutionThread
 ) {
 
-    private val disposables = CompositeDisposable()
+    val disposables = CompositeDisposable()
 
     protected abstract fun buildUseCase(params: Params): Flowable<T>
 

@@ -19,7 +19,7 @@ class SearchRemoteImpl @Inject constructor(
             .map { response ->
                 response.query.pages
                     .sortedBy { it.index }
-                    .map { page -> mapper.mapToEntity(page) }
+                    .map { page -> mapper.mapToEntity(query to page) }
             }
     }
 

@@ -7,6 +7,7 @@ package me.jagdeep.data.model
  */
 data class SearchEntity(
     val pageId: Int,
+    val query: String,
     val index: Int,
     val title: String,
     val description: String?,

@@ -7,15 +7,18 @@ import javax.inject.Inject
 /**
  * DataMapper for Page and SearchEntity.
  */
-open class SearchEntityMapper @Inject constructor() : EntityMapper<Page, SearchEntity> {
+open class SearchEntityMapper @Inject constructor() :
+    EntityMapper<Pair<String, Page>, SearchEntity> {
 
-    override fun mapToEntity(type: Page): SearchEntity {
+    override fun mapToEntity(type: Pair<String, Page>): SearchEntity {
+        val (query, page) = type
         return SearchEntity(
-            type.pageid,
-            type.index,
-            type.title,
-            type.terms?.description?.firstOrNull(),
-            type.thumbnail?.source
+            page.pageid,
+            query,
+            page.index,
+            page.title,
+            page.terms?.description?.firstOrNull(),
+            page.thumbnail?.source
         )
     }
 

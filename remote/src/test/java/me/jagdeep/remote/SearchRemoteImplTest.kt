@@ -32,7 +32,20 @@ open class SearchRemoteImplTest {
         stubApiServiceSearch(Single.just(RemoteDataFactory.createSearchResponse()))
 
         searchRemote.search("Jagdeep").test()
-        verify(service).search(any())
+        verify(service).search(
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any()
+        )
     }
 
     @Test
@@ -40,32 +53,63 @@ open class SearchRemoteImplTest {
         stubApiServiceSearch(Single.just(RemoteDataFactory.createSearchResponse()))
 
         searchRemote.search("Jagdeep").test()
-        verify(service).search(eq("Jagdeep"))
+        verify(service).search(
+            eq("Jagdeep"),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any(),
+            any()
+        )
     }
 
     @Test
     fun `search should return response`() {
+        val query = "Jagdeep"
         val response = RemoteDataFactory.createSearchResponse()
         stubApiServiceSearch(Single.just(response))
         val entities = mutableListOf<SearchEntity>()
-        response.query.pages.forEach {
-            val entity = RemoteDataFactory.createSearchEntity()
-            entities.add(entity)
-            stubMapperMapToEntity(it, entity)
-        }
+        response.query.pages
+            .sortedBy { it.index }
+            .forEach {
+                val entity = RemoteDataFactory.createSearchEntity()
+                entities.add(entity)
+                stubMapperMapToEntity(query to it, entity)
+            }
 
-        val testObserver = searchRemote.search("Jagdeep").test()
+        val testObserver = searchRemote.search(query).test()
+
         testObserver
             .assertValue(entities)
     }
 
     private fun stubApiServiceSearch(response: Single<SearchResponse>) {
-        whenever(service.search(eq("Jagdeep")))
-            .thenReturn(response)
+        whenever(
+            service.search(
+                eq("Jagdeep"),
+                any(),
+                any(),
+                any(),
+                any(),
+                any(),
+                any(),
+                any(),
+                any(),
+                any(),
+                any(),
+                any()
+            )
+        ).thenReturn(response)
     }
 
-    private fun stubMapperMapToEntity(page: Page, searchEntity: SearchEntity) {
-        whenever(mapper.mapToEntity(page))
+    private fun stubMapperMapToEntity(item: Pair<String, Page>, searchEntity: SearchEntity) {
+        whenever(mapper.mapToEntity(eq(item)))
             .thenReturn(searchEntity)
     }
 

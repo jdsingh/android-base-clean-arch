@@ -12,6 +12,8 @@ object RemoteDataFactory {
     fun createSearchEntity(): SearchEntity {
         return SearchEntity(
             pageId = DataFactory.randomInt(),
+            query = DataFactory.randomString(),
+            index = DataFactory.randomInt(),
             title = DataFactory.randomString(),
             description = DataFactory.randomString(),
             imageUrl = DataFactory.randomString()

@@ -10,7 +10,7 @@ object DataFactory {
     }
 
     fun randomInt(): Int {
-        return Math.random().roundToInt()
+        return Random().nextInt()
     }
 
 }

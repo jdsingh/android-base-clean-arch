@@ -68,6 +68,10 @@ class MainActivity : DaggerAppCompatActivity() {
                 is SearchState.Success -> {
                     results.visibility = View.VISIBLE
                     listAdapter.submitList(state.result)
+
+                    // TODO: could to scrollToPosition 0 because list is updated in background thread
+                    // Always reset the scroll position to the top when the query changes.
+                    // results.scrollToPosition(0)
                 }
             }
         })

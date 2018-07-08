@@ -1,12 +1,17 @@
 package me.jagdeep.wikisearch.main
 
+import android.graphics.Typeface.BOLD
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.RecyclerView
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.text.buildSpannedString
+import androidx.core.text.set
+import androidx.core.text.toSpannable
 import com.bumptech.glide.request.RequestOptions
 import me.jagdeep.domain.search.model.SearchResult
 import me.jagdeep.wikisearch.R
@@ -46,7 +51,18 @@ class SearchListAdapter @Inject constructor() :
                 clickListener?.onSearchResultClicked(item)
             }
 
-            title.text = item.title
+            val titleText = item.title.toSpannable()
+            if (item.query.isNotBlank()) {
+                val start = item.title.indexOf(item.query, ignoreCase = true)
+                if (start != -1) {
+                    titleText[start, start + item.query.length] = StyleSpan(BOLD)
+                }
+            }
+
+            title.text = buildSpannedString {
+                append(titleText)
+            }
+
             description.text = item.description
 
             GlideApp.with(itemView.context)

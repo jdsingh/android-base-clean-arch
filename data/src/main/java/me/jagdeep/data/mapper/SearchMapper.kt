@@ -9,6 +9,7 @@ open class SearchMapper @Inject constructor() : DataMapper<SearchEntity, SearchR
     override fun mapToEntity(type: SearchResult): SearchEntity {
         return SearchEntity(
             type.pageId,
+            type.query,
             type.index,
             type.title,
             type.description,
@@ -19,6 +20,7 @@ open class SearchMapper @Inject constructor() : DataMapper<SearchEntity, SearchR
     override fun mapFromEntity(type: SearchEntity): SearchResult {
         return SearchResult(
             type.pageId,
+            type.query,
             type.index,
             type.title,
             type.description,
