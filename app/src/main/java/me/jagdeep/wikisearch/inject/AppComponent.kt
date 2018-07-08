@@ -6,6 +6,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import dagger.android.support.DaggerApplication
+import me.jagdeep.wikisearch.inject.modules.*
 
 @Component(
     modules = [
@@ -14,7 +15,8 @@ import dagger.android.support.DaggerApplication
         RemoteModule::class,
         ActivityModule::class,
         DataModule::class,
-        PresentationModule::class
+        PresentationModule::class,
+        DatabaseModule::class
     ]
 )
 interface AppComponent : AndroidInjector<DaggerApplication> {

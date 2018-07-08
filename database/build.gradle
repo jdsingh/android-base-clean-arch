@@ -17,19 +17,24 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
-
 }
 
 dependencies {
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$mockitoKotlinVersion"
-
-    androidTestImplementation "com.android.support.test:runner:1.0.2"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoCoreVersion}"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}"
+    testImplementation "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}"
+    testImplementation "android.arch.persistence.room:testing:${roomVersion}"
+    testImplementation "android.arch.core:core-testing:${archVersion}"
+    testImplementation "com.android.support.test:runner:${androidSupportRunnerVersion}"
+    testImplementation "com.android.support.test:rules:${androidSupportRulesVersion}"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
+    implementation "javax.inject:javax.inject:1"
+    implementation "android.arch.persistence.room:runtime:${roomVersion}"
+    kapt "android.arch.persistence.room:compiler:${roomVersion}"
+    implementation "android.arch.persistence.room:rxjava2:${roomVersion}"
 
     implementation project(":data")
 }

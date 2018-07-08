@@ -3,6 +3,7 @@ package me.jagdeep.presentation
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import io.reactivex.Observable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.subjects.PublishSubject
 import me.jagdeep.domain.search.SearchUseCase
@@ -25,11 +26,13 @@ class SearchViewModel @Inject constructor(
             .switchMap { query ->
                 searchUseCase.execute(SearchUseCase.Companion.Params(query)).toObservable()
             }
-            .subscribe({ results ->
-                searchState.value = SearchState.Success(results)
-            }, { e ->
+            .onErrorResumeNext { e: Throwable ->
                 searchState.value = SearchState.Error(e.localizedMessage)
-            })
+                return@onErrorResumeNext Observable.just(emptyList())
+            }
+            .subscribe { results ->
+                searchState.value = SearchState.Success(results)
+            }
             .addTo(searchUseCase.disposables)
     }
 

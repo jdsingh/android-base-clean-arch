@@ -99,4 +99,5 @@ dependencies {
     implementation project(":data")
     implementation project(":remote")
     implementation project(":presentation")
+    implementation project(":database")
 }

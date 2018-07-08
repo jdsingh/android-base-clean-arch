@@ -1,4 +1,4 @@
-package me.jagdeep.wikisearch.inject
+package me.jagdeep.wikisearch.inject.modules
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
@@ -7,6 +7,7 @@ import dagger.MapKey
 import dagger.Module
 import dagger.multibindings.IntoMap
 import me.jagdeep.presentation.SearchViewModel
+import me.jagdeep.wikisearch.inject.ViewModelFactory
 import javax.inject.Singleton
 import kotlin.reflect.KClass
 

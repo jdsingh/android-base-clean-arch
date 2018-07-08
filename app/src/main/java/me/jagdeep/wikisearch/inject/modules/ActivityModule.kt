@@ -1,4 +1,4 @@
-package me.jagdeep.wikisearch.inject
+package me.jagdeep.wikisearch.inject.modules
 
 import dagger.Binds
 import dagger.Module
