@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.inputmethod.InputMethodManager
@@ -64,6 +65,7 @@ class MainActivity : DaggerAppCompatActivity() {
             when (state) {
                 is SearchState.Error -> {
                     toast(state.message)
+                        .setGravity(Gravity.CENTER, 0, 0)
                 }
                 is SearchState.Success -> {
                     results.visibility = View.VISIBLE
