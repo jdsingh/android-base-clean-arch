@@ -1,4 +1,7 @@
-## Android WikiSearch
+Android WikiSearch [![Build Status](https://travis-ci.org/jdsingh/android-wikisearch.svg?branch=master)](https://travis-ci.org/jdsingh/android-wikisearch)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/jdsingh/android-wikisearch/blob/master/LICENSE)
+=====================
+*Android App for Wikipedia Search*                   
 
 ### This app contains the following
 
