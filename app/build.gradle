@@ -4,34 +4,46 @@ apply plugin: "kotlin-kapt"
 apply plugin: "kotlin-android-extensions"
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
+    compileSdkVersion buildConfig.compileSdk
 
     defaultConfig {
         applicationId "me.jagdeep.wikisearch"
-        minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion rootProject.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+        versionCode buildConfig.version.code
+        versionName buildConfig.version.name
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
-        config {
-            keyAlias "release"
-            keyPassword "jagdeep"
-            storeFile file("../keystore/release")
-            storePassword "jagdeep"
+        if (System.getenv("ANDROID_WIKISEARCH_KEY_PASSWORD")) {
+            release {
+                keyAlias System.getenv("ANDROID_WIKISEARCH_KEY_ALIAS")
+                keyPassword System.getenv("ANDROID_WIKISEARCH_KEY_PASSWORD")
+                storeFile file(System.getenv("ANDROID_WIKISEARCH_STORE_FILE"))
+                storePassword System.getenv("ANDROID_WIKISEARCH_STORE_PASSWORD")
+            }
+        }
+        debug {
+            storeFile file("../debug.keystore")
         }
     }
 
     buildTypes {
         debug {
             minifyEnabled false
+            signingConfig signingConfigs.debug
         }
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            if (System.getenv("ANDROID_WIKISEARCH_KEY_PASSWORD")) {
+                signingConfig signingConfigs.release
+            } else {
+                // sign with debug key to test proguard config
+                signingConfig signingConfigs.debug
+            }
         }
     }
 }
