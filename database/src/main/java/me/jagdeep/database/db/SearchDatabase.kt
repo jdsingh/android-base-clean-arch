@@ -10,7 +10,7 @@ import me.jagdeep.database.model.CachedQuery
 import me.jagdeep.database.model.CachedResult
 import javax.inject.Inject
 
-@Database(entities = [CachedQuery::class, CachedResult::class], version = 1)
+@Database(entities = [CachedQuery::class, CachedResult::class], version = 1, exportSchema = true)
 abstract class SearchDatabase @Inject constructor() : RoomDatabase() {
 
     abstract fun queriesDao(): QueriesDao
