@@ -15,7 +15,7 @@ buildscript {
     ext.buildConfig.version['code'] = buildConfig.version.major * 1000000 + buildConfig.version.minor * 10000 + buildConfig.version.patch * 100 + buildConfig.version.build
 
     ext {
-        kotlin_version = '1.2.51'
+        kotlin_version = '1.2.60'
 
         compileSdkVersion = 27
         minSdkVersion = 23
