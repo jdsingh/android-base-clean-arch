@@ -31,7 +31,7 @@ buildscript {
 
         daggerVersion = '2.15'
 
-        rxJavaVersion = '2.1.0'
+        rxJavaVersion = '2.2.2'
         rxAndroidVersion = '2.0.2'
         rxKotlinVersion = '2.2.0'
         rxBindingVersion = '2.1.1'
