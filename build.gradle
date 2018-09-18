@@ -36,7 +36,7 @@ buildscript {
         rxKotlinVersion = '2.2.0'
         rxBindingVersion = '2.1.1'
 
-        glideVersion = '4.4.0'
+        glideVersion = '4.8.0'
 
         timberVersion = '4.7.1'
 
