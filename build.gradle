@@ -22,7 +22,7 @@ buildscript {
         targetSdkVersion = 27
 
         archVersion = '1.1.0'
-        roomVersion = '1.0.0'
+        roomVersion = '1.1.1'
         supportLibVersion = '27.1.1'
         firebaseVersion = '11.6.2'
 
