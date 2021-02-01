@@ -47,7 +47,7 @@ buildscript {
 
         junitVersion = '4.12'
         mockitoKotlinVersion = '1.5.0'
-        mockitoCoreVersion = '2.9.0'
+        mockitoCoreVersion = '2.22.0'
         robolectricVersion = '3.4.2'
         androidSupportRunnerVersion = '1.0.0'
         androidSupportRulesVersion = '1.0.0'
